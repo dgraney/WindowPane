@@ -11,7 +11,7 @@ namespace WindowPane
     /// <summary>
     /// The static class MsgBox
     /// </summary>
-    public static class MsgBox
+    public static class MessageBox_
     {
         /// <summary>
         /// Opens a Message Box form with a text box. Returns the text entered into the text box.
