@@ -13,7 +13,6 @@ namespace WindowPane
     /// </summary>
     public static class MsgBox
     {
-
         /// <summary>
         /// Opens a Message Box form with a text box. Returns the text entered into the text box.
         /// </summary>
@@ -71,6 +70,17 @@ namespace WindowPane
             }
             else
                 return "";
+        }
+
+        public static List<string> _Checkboxes(string message, List<string> DataSource, string caption = "Message Box")
+        {
+            MsgBox_CheckBoxes cb = new MsgBox_CheckBoxes(message, caption, DataSource);
+            DialogResult dr = cb.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                return cb.returnList;
+            }
+            return null;
         }
     }
 }

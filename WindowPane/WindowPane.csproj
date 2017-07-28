@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MsgBox_CheckBoxes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MsgBox_CheckBoxes.Designer.cs">
+      <DependentUpon>MsgBox_CheckBoxes.cs</DependentUpon>
+    </Compile>
     <Compile Include="MsgBox_DropDown.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +67,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MsgBox_CheckBoxes.resx">
+      <DependentUpon>MsgBox_CheckBoxes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MsgBox_DropDown.resx">
       <DependentUpon>MsgBox_DropDown.cs</DependentUpon>
     </EmbeddedResource>
