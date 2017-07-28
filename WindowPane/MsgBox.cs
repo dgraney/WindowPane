@@ -33,6 +33,14 @@ namespace WindowPane
                 return null;
         }
 
+        /// <summary>
+        /// Opens a Message Box form with a drow down. Returns the index of the selected item.
+        /// </summary>
+        ///<param name = "message" > The message displayed directly above the text box.</param>
+        /// <param name="caption">The title of the Message Box form.</param>
+        /// <param name="buttonText">The text displayed over the button.</param>
+        /// <param name="DataSource">The string list to display.</param>
+        /// <returns></returns>
         public static int _DropDown_Int(string message, List<string> DataSource, string caption = "Message Box", string buttonText = "OK")
         {
             MsgBox_DropDown form = new MsgBox_DropDown(message, caption, buttonText,DataSource);
@@ -44,6 +52,15 @@ namespace WindowPane
             else
                 return 0;
         }
+
+        /// <summary>
+        /// Opens a Message Box form with a drow down. Returns the string of the selected item.
+        /// </summary>
+        ///<param name = "message" > The message displayed directly above the text box.</param>
+        /// <param name="caption">The title of the Message Box form.</param>
+        /// <param name="buttonText">The text displayed over the button.</param>
+        /// <param name="DataSource">The string list to display.</param>
+        /// <returns></returns>
         public static string _DropDown_String(string message, List<string> DataSource, string caption = "Message Box", string buttonText = "OK")
         {
             MsgBox_DropDown form = new MsgBox_DropDown(message, caption, buttonText, DataSource);
