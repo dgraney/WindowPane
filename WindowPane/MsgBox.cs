@@ -18,7 +18,7 @@ namespace WindowPane
         /// </summary>
         /// <param name="message">The message displayed directly above the text box.</param>
         /// <param name="caption">The title of the Message Box form.</param>
-        /// <param name="buttonText">The text displayed over the button.</param>
+        /// <param name="buttonText">The text displayed over the return button.</param>
         /// <returns></returns>
         public static string _TextBox(string message, string caption = "Message Box",string buttonText = "OK")
         {
@@ -35,9 +35,9 @@ namespace WindowPane
         /// <summary>
         /// Opens a Message Box form with a drow down. Returns the index of the selected item.
         /// </summary>
-        ///<param name = "message" > The message displayed directly above the text box.</param>
+        ///<param name = "message" > The message displayed directly above the combo box.</param>
         /// <param name="caption">The title of the Message Box form.</param>
-        /// <param name="buttonText">The text displayed over the button.</param>
+        /// <param name="buttonText">The text displayed over the return button.</param>
         /// <param name="DataSource">The string list to display.</param>
         /// <returns></returns>
         public static int _DropDown_Int(string message, List<string> DataSource, string caption = "Message Box", string buttonText = "OK")
@@ -55,9 +55,9 @@ namespace WindowPane
         /// <summary>
         /// Opens a Message Box form with a drow down. Returns the string of the selected item.
         /// </summary>
-        ///<param name = "message" > The message displayed directly above the text box.</param>
+        ///<param name = "message" > The message displayed directly above the combo box.</param>
         /// <param name="caption">The title of the Message Box form.</param>
-        /// <param name="buttonText">The text displayed over the button.</param>
+        /// <param name="buttonText">The text displayed over the return button.</param>
         /// <param name="DataSource">The string list to display.</param>
         /// <returns></returns>
         public static string _DropDown_String(string message, List<string> DataSource, string caption = "Message Box", string buttonText = "OK")
@@ -72,9 +72,17 @@ namespace WindowPane
                 return "";
         }
 
-        public static List<string> _Checkboxes(string message, List<string> DataSource, string caption = "Message Box")
+        /// <summary>
+        /// Opens a Message Box form with multiple checkboxes (length of the data source). Returns a list of strings representing the text beside each checked check box.
+        /// </summary>
+        /// <param name="message">The message displayed directly above the list of checkboxes.</param>
+        /// <param name="DataSource">The data source representing the list of strings to display checkboxes for.</param>
+        /// <param name="caption">The title of the Message Box form.</param>
+        /// <param name="buttonText">The text displayed over the return button.</param>
+        /// <returns></returns>
+        public static List<string> _Checkboxes(string message, List<string> DataSource, string caption = "Message Box",string buttonText = "OK")
         {
-            MsgBox_CheckBoxes cb = new MsgBox_CheckBoxes(message, caption, DataSource);
+            MsgBox_CheckBoxes cb = new MsgBox_CheckBoxes(message, caption, DataSource,buttonText);
             DialogResult dr = cb.ShowDialog();
             if (dr == DialogResult.OK)
             {
@@ -82,5 +90,7 @@ namespace WindowPane
             }
             return null;
         }
+
+
     }
 }

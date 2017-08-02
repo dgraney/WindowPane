@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowPane
@@ -14,7 +9,7 @@ namespace WindowPane
     {
         internal List<string> returnList = new List<string>();
         internal List<CheckBox> checkBoxes = new List<CheckBox>();
-        internal MsgBox_CheckBoxes(string message, string caption, List<string> DataSource)
+        internal MsgBox_CheckBoxes(string message, string caption, List<string> DataSource, string buttonText)
         {
             InitializeComponent();
 
@@ -28,6 +23,7 @@ namespace WindowPane
             
             flowLayoutPanel1.Controls.AddRange(checkBoxes.ToArray());
             this.Size = new Size(this.Size.Width, 100 + 35 * (int)Math.Ceiling((double)(checkBoxes.Count / 3)));
+            button1.Text = buttonText;
         }
 
         private void button1_Click(object sender, EventArgs e)
