@@ -85,6 +85,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LoadingScreen.resx">
+      <DependentUpon>LoadingScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MsgBox_CheckBoxes.resx">
       <DependentUpon>MsgBox_CheckBoxes.cs</DependentUpon>
     </EmbeddedResource>

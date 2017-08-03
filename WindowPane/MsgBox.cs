@@ -94,7 +94,7 @@ namespace WindowPane
         /// <summary>
         /// Opens a Message Box form with a color dialog. Returns a user-chosen color.
         /// </summary>
-        /// <param name="message">The message displayed directly above the list of checkboxes.</param>
+        /// <param name="message">The message displayed directly above the color chooser.</param>
         /// <param name="caption">The title of the Message Box form.</param>
         /// <param name="buttonText">The text displayed over the return button.</param>
         /// <returns>A user-chosen color.</returns>
@@ -106,8 +106,17 @@ namespace WindowPane
                 return cd.returnColor;
             else
                 return new Color();
+            
         }
 
+       
+        /// <summary>
+        /// Opens a Message Box with a file dialog to choose an image. Returns the chosen file as an image.
+        /// </summary>
+        /// <param name="message">The message displayed directly above the image selector.</param>
+        /// <param name="caption">The title of the Message Box form.</param>
+        /// <param name="buttonText">The text displayed over the return button.</param>
+        /// <returns></returns>
         public static Image _Image(string message, string caption = "Message Box", string buttonText = "OK")
         {
             MsgBox_Image img = new MsgBox_Image(message, caption, buttonText);

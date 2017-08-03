@@ -20,7 +20,6 @@ namespace WindowPane
             textBox2.Text = message;
             this.Text = caption;
             button1.Text = buttonText;
-
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -37,7 +36,7 @@ namespace WindowPane
         private void button2_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Portable Network Graphics | *.png";
+            ofd.Filter = "Image Files | *.png; *.jpg; *.jpeg; *.bmp; *.gif; *.tiff; *.tif";
             DialogResult dr = ofd.ShowDialog();
             if (dr == DialogResult.OK)
             {
