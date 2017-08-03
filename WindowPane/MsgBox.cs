@@ -107,5 +107,15 @@ namespace WindowPane
             else
                 return new Color();
         }
+
+        public static Image _Image(string message, string caption = "Message Box", string buttonText = "OK")
+        {
+            MsgBox_Image img = new MsgBox_Image(message, caption, buttonText);
+            DialogResult dr = img.ShowDialog();
+            if (dr == DialogResult.OK)
+                return img.returnImage;
+            else
+                return null;
+        }
     }
 }
