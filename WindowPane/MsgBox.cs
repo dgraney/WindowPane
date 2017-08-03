@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace WindowPane
 {
+    
     /// <summary>
     /// The static class MsgBox
     /// </summary>
@@ -90,7 +91,21 @@ namespace WindowPane
             }
             return null;
         }
-
-
+        /// <summary>
+        /// Opens a Message Box form with a color dialog. Returns a user-chosen color.
+        /// </summary>
+        /// <param name="message">The message displayed directly above the list of checkboxes.</param>
+        /// <param name="caption">The title of the Message Box form.</param>
+        /// <param name="buttonText">The text displayed over the return button.</param>
+        /// <returns>A user-chosen color.</returns>
+        public static Color _ColorDialog(string message, string caption = "Message Box", string buttonText = "OK")
+        {
+            MsgBox_ColorDialog cd = new WindowPane.MsgBox_ColorDialog(message, caption, buttonText);
+            DialogResult dr = cd.ShowDialog();
+            if (dr == DialogResult.OK)
+                return cd.returnColor;
+            else
+                return new Color();
+        }
     }
 }

@@ -45,11 +45,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoadingScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingScreen.Designer.cs">
+      <DependentUpon>LoadingScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="MsgBox_CheckBoxes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MsgBox_CheckBoxes.Designer.cs">
       <DependentUpon>MsgBox_CheckBoxes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MsgBox_ColorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MsgBox_ColorDialog.Designer.cs">
+      <DependentUpon>MsgBox_ColorDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="MsgBox_DropDown.cs">
       <SubType>Form</SubType>
@@ -69,6 +81,9 @@
   <ItemGroup>
     <EmbeddedResource Include="MsgBox_CheckBoxes.resx">
       <DependentUpon>MsgBox_CheckBoxes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MsgBox_ColorDialog.resx">
+      <DependentUpon>MsgBox_ColorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MsgBox_DropDown.resx">
       <DependentUpon>MsgBox_DropDown.cs</DependentUpon>
