@@ -10,10 +10,11 @@ using System.Windows.Forms;
 
 namespace WindowPane
 {
+    /// <summary>
+    /// Opens a message box with an updatable progress bar.
+    /// </summary>
     public partial class LoadingScreen : Form
-    {
-        private Form source;
-
+    {   
         /// <summary>
         /// Sets the progress bar value. Used in block or continuous progress bar types.
         /// </summary>
@@ -34,7 +35,22 @@ namespace WindowPane
         /// <summary>
         /// The type of progress bar to display in the loading screen.
         /// </summary>
-        public enum ProgressBarType { Marquee, Blocks, Continuous };
+        /// 
+        public enum ProgressBarType
+        {
+            /// <summary>
+            /// Represents a marquee-type progress bar.
+            /// </summary>
+            Marquee,
+            /// <summary>
+            /// Represents a block-type progress bar.
+            /// </summary>
+            Block,
+            /// <summary>
+            /// Represents a continuous-type progress bar.
+            /// </summary>
+            Continuous
+        };
 
         /// <summary>
         /// Displays a loading screen presenting the user with a message and progress bar.
@@ -50,15 +66,13 @@ namespace WindowPane
             
             this.StartPosition = FormStartPosition.CenterScreen;
            
-
             if (type == ProgressBarType.Marquee)
                 progressBar1.Style = ProgressBarStyle.Marquee;
-            else if (type == ProgressBarType.Blocks)
+            else if (type == ProgressBarType.Block)
                 progressBar1.Style = ProgressBarStyle.Blocks;
             else
                 progressBar1.Style = ProgressBarStyle.Continuous;
         }
-
         /// <summary>
         /// Used to change the label text displayed above the progress bar.
         /// </summary>
