@@ -89,7 +89,7 @@
             this.label1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.label1.Size = new System.Drawing.Size(352, 22);
             this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+            this.label1.Text = "label122";
             // 
             // label2
             // 
