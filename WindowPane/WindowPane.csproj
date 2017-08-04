@@ -75,6 +75,12 @@
     <Compile Include="Message Boxes\MsgBox_Image.Designer.cs">
       <DependentUpon>MsgBox_Image.cs</DependentUpon>
     </Compile>
+    <Compile Include="Message Boxes\MsgBox_RichTextBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Message Boxes\MsgBox_RichTextBox.Designer.cs">
+      <DependentUpon>MsgBox_RichTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Message Boxes\MsgBox_TextBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Message Boxes\MsgBox_Image.resx">
       <DependentUpon>MsgBox_Image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Message Boxes\MsgBox_RichTextBox.resx">
+      <DependentUpon>MsgBox_RichTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Message Boxes\MsgBox_TextBox.resx">
       <DependentUpon>MsgBox_TextBox.cs</DependentUpon>

@@ -8,7 +8,22 @@ using System.Threading.Tasks;
 
 namespace WindowPane
 {
-    
+    /// <summary>
+    /// Determines which to return: rtf or text 
+    /// </summary>
+    public enum RichTextBoxReturnType
+    {
+        /// <summary>
+        /// Returns the rtf string.
+        /// </summary>
+        RTF_STRING,
+
+        /// <summary>
+        /// Returns the text string.
+        /// </summary>
+        TEXT_STRING
+    }
+
     /// <summary>
     /// The static class MsgBox
     /// </summary>
@@ -125,6 +140,33 @@ namespace WindowPane
                 return img.returnImage;
             else
                 return null;
+        }
+
+        /// <summary>
+        ///  Opens a Message Box with a rich text box. Returns either the RTF or the text.
+        /// </summary>
+        /// <param name="message">The message displayed directly above the rich text box.</param>
+        /// <param name="caption">The title of the Message Box form.</param>
+        /// <param name="buttonText">The text displayed over the return button.</param>
+        /// <param name="type">Determines which to return: rtf or text</param>
+        /// <returns></returns>
+        public static string _RichTextBox(string message, RichTextBoxReturnType type, string caption = "Message Box", string buttonText = "OK")
+        {
+            if (type == RichTextBoxReturnType.RTF_STRING)
+            {
+                MsgBox_RichTextBox rtb = new MsgBox_RichTextBox(message, caption, buttonText);
+                DialogResult dr = rtb.ShowDialog();
+                if (dr == DialogResult.OK)
+                    return rtb.returnRTF;
+            }
+            else if (type == RichTextBoxReturnType.TEXT_STRING)
+            {
+                MsgBox_RichTextBox rtb = new MsgBox_RichTextBox(message, caption, buttonText);
+                DialogResult dr = rtb.ShowDialog();
+                if (dr == DialogResult.OK)
+                    return rtb.returnText;
+            }
+            return null;
         }
     }
 }
