@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Security;
+using WindowPane.Message_Boxes;
 using System.Threading.Tasks;
 
 namespace WindowPane
@@ -165,6 +167,28 @@ namespace WindowPane
                 DialogResult dr = rtb.ShowDialog();
                 if (dr == DialogResult.OK)
                     return rtb.returnText;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Opens a login dialog. Returns a list of SecureString. First item is the username, second item is the password.
+        /// </summary>
+        /// <param name="usernameRequestText">Displayed above the username textbox.</param>
+        /// <param name="passworkRequestText">Displayed above the username textbox.</param>
+        /// <param name="caption">The title of the Message Box form.</param>
+        /// <param name="buttonText">The text displayed over the return button.</param>
+        /// <returns></returns>
+        public static List<SecureString> _Login(string usernameRequestText = "Username", string passworkRequestText = "Password", string caption = "Message Box", string buttonText = "OK")
+        {
+            MsgBox_Login login = new MsgBox_Login(usernameRequestText, passworkRequestText, caption, buttonText);
+            DialogResult dr = login.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                List<SecureString> ss = new List<SecureString>();
+                ss.Add(login.username);
+                ss.Add(login.password);
+                return ss;
             }
             return null;
         }
