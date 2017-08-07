@@ -10,6 +10,14 @@ using System.Threading.Tasks;
 
 namespace WindowPane
 {
+    public enum CBDisplayType
+    {
+
+        GRID,
+
+        LIST
+    }
+
     /// <summary>
     /// Determines which to return: rtf or text 
     /// </summary>
@@ -98,9 +106,9 @@ namespace WindowPane
         /// <param name="caption">The title of the Message Box form.</param>
         /// <param name="buttonText">The text displayed over the return button.</param>
         /// <returns></returns>
-        public static List<string> _Checkboxes(string message, List<string> DataSource, string caption = "Message Box",string buttonText = "OK")
+        public static List<string> _Checkboxes(string message, List<string> DataSource, CBDisplayType type = CBDisplayType.GRID, string caption = "Message Box",string buttonText = "OK")
         {
-            MsgBox_CheckBoxes cb = new MsgBox_CheckBoxes(message, caption, DataSource,buttonText);
+            MsgBox_CheckBoxes cb = new MsgBox_CheckBoxes(message, caption, DataSource,buttonText,type);
             DialogResult dr = cb.ShowDialog();
             if (dr == DialogResult.OK)
             {
@@ -108,6 +116,7 @@ namespace WindowPane
             }
             return null;
         }
+
         /// <summary>
         /// Opens a Message Box form with a color dialog. Returns a user-chosen color.
         /// </summary>
