@@ -112,18 +112,19 @@ namespace WindowPane
         /// Opens a Message Box form with a color dialog. Returns a user-chosen color.
         /// </summary>
         /// <param name="message">The message displayed directly above the color chooser.</param>
+        /// <param name="startingColor">The color displayed/used before choosing a color.</param>
         /// <param name="caption">The title of the Message Box form.</param>
         /// <param name="buttonText">The text displayed over the return button.</param>
         /// <returns>A user-chosen color.</returns>
-        public static Color _ColorDialog(string message, string caption = "Message Box", string buttonText = "OK")
+        public static Color _ColorDialog(string message, Color startingColor, string caption = "Message Box", string buttonText = "OK")
         {
-            MsgBox_ColorDialog cd = new WindowPane.MsgBox_ColorDialog(message, caption, buttonText);
+            MsgBox_ColorDialog cd = new MsgBox_ColorDialog(message, caption, buttonText, startingColor);
             DialogResult dr = cd.ShowDialog();
             if (dr == DialogResult.OK)
                 return cd.returnColor;
             else
                 return new Color();
-            
+
         }
 
        
@@ -133,10 +134,11 @@ namespace WindowPane
         /// <param name="message">The message displayed directly above the image selector.</param>
         /// <param name="caption">The title of the Message Box form.</param>
         /// <param name="buttonText">The text displayed over the return button.</param>
+        /// <param name="startingImage">The image displayed immediately before any other image is chosen.</param>
         /// <returns></returns>
-        public static Image _Image(string message, string caption = "Message Box", string buttonText = "OK")
+        public static Image _Image(string message, string caption = "Message Box", string buttonText = "OK", Image startingImage = null)
         {
-            MsgBox_Image img = new MsgBox_Image(message, caption, buttonText);
+            MsgBox_Image img = new MsgBox_Image(message, caption, buttonText, startingImage);
             DialogResult dr = img.ShowDialog();
             if (dr == DialogResult.OK)
                 return img.returnImage;

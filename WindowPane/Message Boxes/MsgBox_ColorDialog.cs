@@ -13,7 +13,7 @@ namespace WindowPane
     internal partial class MsgBox_ColorDialog : Form
     {
         public Color returnColor;
-        internal MsgBox_ColorDialog(string message, string caption, string buttonText)
+        internal MsgBox_ColorDialog(string message, string caption, string buttonText, Color startingColor)
         {
             InitializeComponent();
 
@@ -21,8 +21,7 @@ namespace WindowPane
             this.Text = caption;
             button1.Text = buttonText;
             
-            pictureBox1.BackColor = Color.Red;
-
+            pictureBox1.BackColor = startingColor;
         }
         private void button1_Click(object sender, EventArgs e)
         {
