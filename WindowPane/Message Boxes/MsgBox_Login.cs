@@ -13,6 +13,7 @@ namespace WindowPane.Message_Boxes
 {
     internal partial class MsgBox_Login : Form
     {
+        
         public SecureString username = null;
         public SecureString password = null;
         internal MsgBox_Login(string usernameRequestText, string passwordRequestText, string caption, string buttonText)
@@ -27,13 +28,19 @@ namespace WindowPane.Message_Boxes
 
         private void button1_Click(object sender, EventArgs e)
         {
+            username = new SecureString();
             foreach (char c in textBox1.Text)
+            {
+                MessageBox.Show(c.ToString());
                 username.AppendChar(c);
+            }
+            password = new SecureString();
             foreach (char c in textBox2.Text)
                 password.AppendChar(c);
+
             username.MakeReadOnly();
             password.MakeReadOnly();
-
+            
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

@@ -15,7 +15,6 @@ namespace WindowPane
     public partial class Notification : Form
     {
         private string notif;
-        private string title;
         private Timer decreaseOpacityTimer = new Timer();
         private Timer closeTimer = new Timer();
         private Timer beginDecreaseOpacityTimer = new Timer();
@@ -31,7 +30,7 @@ namespace WindowPane
         {
             InitializeComponent();
 
-            notif = notificationText;
+            NotificationBox.Text = notificationText;
             this.Text = title_;
             this.TopMost = true;
             this.TopLevel = true;
@@ -40,23 +39,10 @@ namespace WindowPane
 
         private void Notification_Shown(object sender, EventArgs e)
         {
-            NotificationBox.Text = notif;
             this.TopMost = true;
             this.TopLevel = true;
 
-            int notificationCount = notif.ToCharArray().Count(t => t == '•');
-            if (notificationCount > 1)
-            {
-                this.Size = new Size(this.Width, (int)(notificationCount * 42));
-                NotificationBox.Size = new Size(this.Width - 10, (int)(notificationCount * 42));
-            }
-            else
-            {
-                Size totalSize = TextRenderer.MeasureText(notif, NotificationBox.Font);
-                int totalLines = (int)totalSize.Width / NotificationBox.Size.Width;
-                NotificationBox.Size = new Size(NotificationBox.Size.Width, totalLines);
-                this.Size = new Size(NotificationBox.Size.Width + 10, NotificationBox.Size.Height + 32);
-            }
+            SetWindowSize();
 
             beginDecreaseOpacityTimer.Interval = 5000;
             beginDecreaseOpacityTimer.Tick += BeginDecreaseOpacityTimer_Tick;
@@ -67,6 +53,7 @@ namespace WindowPane
             closeTimer.Start();
         }
 
+        #region Timers
         //Wait a bit then decrease the opacity
         private void BeginDecreaseOpacityTimer_Tick(object sender, EventArgs e)
         {
@@ -88,6 +75,26 @@ namespace WindowPane
         {
             this.Opacity -= 0.05;
         }
+        #endregion
+
+        #region Functions
+        private void SetWindowSize()
+        {
+            int notificationCount = notif.ToCharArray().Count(t => t == '•');
+            if (notificationCount > 1)
+            {
+                this.Size = new Size(this.Width, (int)(notificationCount * 42));
+                NotificationBox.Size = new Size(this.Width - 10, (int)(notificationCount * 42));
+            }
+            else
+            {
+                Size totalSize = TextRenderer.MeasureText(notif, NotificationBox.Font);
+                int totalLines = (int)totalSize.Width / NotificationBox.Size.Width;
+                NotificationBox.Size = new Size(NotificationBox.Size.Width, totalLines);
+                this.Size = new Size(NotificationBox.Size.Width + 10, NotificationBox.Size.Height + 32);
+            }
+        }
+
 
         private void KeepNotificationUp()
         {
@@ -102,7 +109,8 @@ namespace WindowPane
             beginDecreaseOpacityTimer.Start();
             closeTimer.Start();
         }
-
+        #endregion
+        #region Mouse Events
         private void Notification_MouseEnter(object sender, EventArgs e)
         {
             KeepNotificationUp();
@@ -138,5 +146,6 @@ namespace WindowPane
         {
             FadeNotification();
         }
+        #endregion
     }
 }

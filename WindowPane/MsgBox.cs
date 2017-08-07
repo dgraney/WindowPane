@@ -189,8 +189,9 @@ namespace WindowPane
         /// <param name="caption">The title of the Message Box form.</param>
         /// <param name="buttonText">The text displayed over the return button.</param>
         /// <returns></returns>
-        public static List<SecureString> _Login(string usernameRequestText = "Username", string passworkRequestText = "Password", string caption = "Message Box", string buttonText = "OK")
+        /*public static List<SecureString> _Login(string usernameRequestText = "Username", string passworkRequestText = "Password", string caption = "Message Box", string buttonText = "OK")
         {
+            
             MsgBox_Login login = new MsgBox_Login(usernameRequestText, passworkRequestText, caption, buttonText);
             DialogResult dr = login.ShowDialog();
             if (dr == DialogResult.OK)
@@ -202,6 +203,6 @@ namespace WindowPane
             }
             return null;
         }
-
+        */
     }
 }
