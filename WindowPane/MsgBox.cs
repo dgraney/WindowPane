@@ -127,7 +127,6 @@ namespace WindowPane
 
         }
 
-       
         /// <summary>
         /// Opens a Message Box with a file dialog to choose an image. Returns the chosen file as an image.
         /// </summary>
@@ -194,5 +193,6 @@ namespace WindowPane
             }
             return null;
         }
+
     }
 }

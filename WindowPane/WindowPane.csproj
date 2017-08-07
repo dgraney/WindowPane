@@ -94,6 +94,12 @@
       <DependentUpon>MsgBox_TextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="MsgBox.cs" />
+    <Compile Include="Notification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Notification.Designer.cs">
+      <DependentUpon>Notification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
