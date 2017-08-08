@@ -16,6 +16,7 @@ namespace WindowPane
             InitializeComponent();
             currentType = type;
             label1.Text = message;
+
             if (currentType == CBDisplayType.GRID)
             {
                 for (int i = 0; i < DataSource.Count; i++)

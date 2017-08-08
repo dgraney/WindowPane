@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowPane.Message_Boxes
 {
     internal partial class MsgBox_Login : Form
     {
-        
-        public SecureString username = null;
-        public SecureString password = null;
+
+        private string username = "";
+        private SecureString password = new SecureString();
+
+        public KeyValuePair<string, SecureString> UsernameAndPasswordResult = new KeyValuePair<string, SecureString>();
+
         internal MsgBox_Login(string usernameRequestText, string passwordRequestText, string caption, string buttonText)
         {
             InitializeComponent();
@@ -28,21 +25,35 @@ namespace WindowPane.Message_Boxes
 
         private void button1_Click(object sender, EventArgs e)
         {
-            username = new SecureString();
-            foreach (char c in textBox1.Text)
-            {
-                MessageBox.Show(c.ToString());
-                username.AppendChar(c);
-            }
-            password = new SecureString();
-            foreach (char c in textBox2.Text)
-                password.AppendChar(c);
-
-            username.MakeReadOnly();
+            username = UsernameTextbox.Text;
             password.MakeReadOnly();
-            
+
+            UsernameAndPasswordResult = new KeyValuePair<string, SecureString>(username, password);
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+        
+        private void PasswordTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            /* Backspaces reset it
+             * Left or Right arrows reset it
+             * 
+             */
+            if (e.KeyCode == Keys.Back || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+            {
+                PasswordTextbox.Text = "";
+                password = new SecureString();
+                return;
+            }
+            password.AppendChar(IndependentFunctions.GetChar(e));
+        }
+       
+        private void PasswordTextbox_Click(object sender, EventArgs e)
+        {
+            PasswordTextbox.Text = "";
+            password = new SecureString();
+        }
+        
     }
 }

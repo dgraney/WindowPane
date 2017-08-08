@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.Security;
+using System.Windows.Forms;
 using WindowPane.Message_Boxes;
-using System.Threading.Tasks;
 
 namespace WindowPane
 {
@@ -189,20 +185,17 @@ namespace WindowPane
         /// <param name="caption">The title of the Message Box form.</param>
         /// <param name="buttonText">The text displayed over the return button.</param>
         /// <returns></returns>
-        /*public static List<SecureString> _Login(string usernameRequestText = "Username", string passworkRequestText = "Password", string caption = "Message Box", string buttonText = "OK")
+        public static KeyValuePair<string,SecureString> _Login(string usernameRequestText = "Username", string passworkRequestText = "Password", string caption = "Message Box", string buttonText = "OK")
         {
             
             MsgBox_Login login = new MsgBox_Login(usernameRequestText, passworkRequestText, caption, buttonText);
             DialogResult dr = login.ShowDialog();
             if (dr == DialogResult.OK)
             {
-                List<SecureString> ss = new List<SecureString>();
-                ss.Add(login.username);
-                ss.Add(login.password);
-                return ss;
+                return login.UsernameAndPasswordResult;
             }
-            return null;
+            return new KeyValuePair<string, SecureString>(null,null);
         }
-        */
+        
     }
 }

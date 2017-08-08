@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowPane
@@ -36,6 +30,7 @@ namespace WindowPane
             UnderlineButton.CheckOnClick = true;
             UnderlineButton.CheckedChanged += UnderlineButton_CheckedChanged;
             #endregion
+
         }
 
         #region Functions
@@ -89,7 +84,6 @@ namespace WindowPane
             else isUnderline = false;
 
             DoFontStyleChecks();
-
         }
 
         private void ItalicsButton_CheckedChanged(object sender, EventArgs e)
@@ -132,8 +126,6 @@ namespace WindowPane
                 UnderlineButton.Checked = true;
             else
                 UnderlineButton.Checked = false;
-
-            
         }
     }
 }
