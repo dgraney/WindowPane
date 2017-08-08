@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace WindowPane
@@ -12,6 +14,7 @@ namespace WindowPane
         private bool isBold = false;
         private bool isItalic = false;
         private bool isUnderline = false;
+
         internal MsgBox_RichTextBox(string message, string caption, string buttonText)
         {
             InitializeComponent();
@@ -29,6 +32,16 @@ namespace WindowPane
 
             UnderlineButton.CheckOnClick = true;
             UnderlineButton.CheckedChanged += UnderlineButton_CheckedChanged;
+
+            Image textColorImage = IndependentFunctions.FontColorImage(Color.Red);
+            Image highlightColorImage = IndependentFunctions.HighlightColorImage(Color.Yellow);
+            TextColorButton.Image = textColorImage;
+            HighlightColorButton.Image = highlightColorImage;
+
+            FontFamily[] ffs = FontFamily.Families;
+            ChooseFont.ComboBox.DataSource = ffs.Select(x => x.Name).ToList<string>();
+
+            FontSizeChoose.ComboBox.DataSource = new List<int>() { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 }.Select(x=>x.ToString()).ToList<string>();
             #endregion
 
         }
@@ -78,30 +91,56 @@ namespace WindowPane
 
         private void UnderlineButton_CheckedChanged(object sender, EventArgs e)
         {
+            try
+            {
+                Font rtbFont = richTextBox1.SelectionFont;
 
-            if (UnderlineButton.CheckState == CheckState.Checked)
-                isUnderline = true;
-            else isUnderline = false;
+                if (UnderlineButton.CheckState == CheckState.Checked) isUnderline = true;
+                else isUnderline = false;
 
-            DoFontStyleChecks();
+                if (isUnderline)
+                    richTextBox1.SelectionFont = new Font(rtbFont, rtbFont.Style | FontStyle.Underline);
+                else
+                    richTextBox1.SelectionFont = new Font(rtbFont, rtbFont.Style & ~FontStyle.Underline);
+            }
+            catch { }
         }
 
         private void ItalicsButton_CheckedChanged(object sender, EventArgs e)
         {
-            if (ItalicsButton.CheckState == CheckState.Checked)
-                isItalic = true;
-            else
-                isItalic = false;
-            DoFontStyleChecks();
+            try
+            {
+                Font rtbFont = richTextBox1.SelectionFont;
+                if (ItalicsButton.CheckState == CheckState.Checked)
+                    isItalic = true;
+                else
+                    isItalic = false;
+
+                if (isItalic)
+                    richTextBox1.SelectionFont = new Font(rtbFont, rtbFont.Style | FontStyle.Italic);
+                else
+                    richTextBox1.SelectionFont = new Font(rtbFont, rtbFont.Style & ~FontStyle.Italic);
+            }
+            catch { }
         }
 
         private void BoldButton_CheckedChanged(object sender, EventArgs e)
         {
-            if (BoldButton.CheckState == CheckState.Checked)
-                isBold = true;
-            else
-                isBold = false;
-            DoFontStyleChecks();
+            try
+            {
+                Font rtbFont = richTextBox1.SelectionFont;
+
+                if (BoldButton.CheckState == CheckState.Checked)
+                    isBold = true;
+                else
+                    isBold = false;
+
+                if (isBold)
+                    richTextBox1.SelectionFont = new Font(rtbFont, rtbFont.Style | FontStyle.Bold);
+                else
+                    richTextBox1.SelectionFont = new Font(rtbFont, rtbFont.Style & ~FontStyle.Bold);
+            }
+            catch { }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -114,18 +153,59 @@ namespace WindowPane
 
         private void richTextBox1_SelectionChanged(object sender, EventArgs e)
         {
-            if (richTextBox1.SelectionFont.Bold)
-                BoldButton.Checked = true;
+          
+        }
+        
+        private void TextColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.AllowFullOpen = true;
+            DialogResult dr = cd.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                TextColorButton.Image = IndependentFunctions.FontColorImage(cd.Color);
+                TextColorButton.Text = String.Format("({0},{1},{2})", cd.Color.R, cd.Color.G, cd.Color.B);
+
+                richTextBox1.SelectionColor = cd.Color;
+            }
+        }
+
+        private void HighlightColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.AllowFullOpen = true;
+            DialogResult dr = cd.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                HighlightColorButton.Image = IndependentFunctions.HighlightColorImage(cd.Color);
+                HighlightColorButton.Text = String.Format("({0},{1},{2})", cd.Color.R, cd.Color.G, cd.Color.B);
+
+                richTextBox1.SelectionBackColor = cd.Color;
+            }
+        }
+
+        private void ChooseFont_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Find corresponding font
+            ChooseFont.ComboBox.SelectAll();
+            string fontName = ChooseFont.ComboBox.SelectedText;
+            FontFamily ff = FontFamily.Families.Where(x => x.Name == fontName).FirstOrDefault();
+
+            if (ff.IsStyleAvailable(richTextBox1.SelectionFont.Style))
+                richTextBox1.SelectionFont = new Font(ff, richTextBox1.SelectionFont.Size, richTextBox1.SelectionFont.Style);
             else
-                BoldButton.Checked = false;
-            if (richTextBox1.SelectionFont.Italic)
-                ItalicsButton.Checked = true;
-            else
-                ItalicsButton.Checked = false;
-            if (richTextBox1.SelectionFont.Underline)
-                UnderlineButton.Checked = true;
-            else
-                UnderlineButton.Checked = false;
+                richTextBox1.SelectionFont = new Font(ff, richTextBox1.SelectionFont.Size);
+        }
+
+        private void toolStripComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ChooseFont.ComboBox.SelectAll();
+                float size = float.Parse(FontSizeChoose.ComboBox.Text);
+                richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily,size,richTextBox1.SelectionFont.Style);
+            }
+            catch { }
         }
     }
 }

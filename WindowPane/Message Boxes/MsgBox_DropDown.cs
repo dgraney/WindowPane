@@ -17,7 +17,6 @@ namespace WindowPane
             comboBox1.DataSource = DataSource;
         }
 
-
         private void button1_Click(object sender, EventArgs e)
         {
             returnInt = comboBox1.SelectedIndex;
