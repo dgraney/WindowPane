@@ -1,5 +1,8 @@
 ﻿namespace WindowPane
 {
+    /// <summary>
+    /// ----
+    /// </summary>
     partial class Notification
     {
         /// <summary>

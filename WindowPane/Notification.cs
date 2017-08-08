@@ -7,7 +7,6 @@ namespace WindowPane
 {
     public partial class Notification : Form
     {
-        private string notif;
         private Timer decreaseOpacityTimer = new Timer();
         private Timer closeTimer = new Timer();
         private Timer beginDecreaseOpacityTimer = new Timer();
@@ -73,6 +72,7 @@ namespace WindowPane
         #region Functions
         private void SetWindowSize()
         {
+            string notif = NotificationBox.Text;
             int notificationCount = notif.ToCharArray().Count(t => t == '•');
             if (notificationCount > 1)
             {
@@ -87,8 +87,7 @@ namespace WindowPane
                 this.Size = new Size(NotificationBox.Size.Width + 10, NotificationBox.Size.Height + 32);
             }
         }
-
-
+        
         private void KeepNotificationUp()
         {
             beginDecreaseOpacityTimer.Stop();
@@ -103,6 +102,7 @@ namespace WindowPane
             closeTimer.Start();
         }
         #endregion
+
         #region Mouse Events
         private void Notification_MouseEnter(object sender, EventArgs e)
         {

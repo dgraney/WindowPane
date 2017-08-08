@@ -6,11 +6,18 @@ using WindowPane.Message_Boxes;
 
 namespace WindowPane
 {
+    /// <summary>
+    /// The way to display checkboxes.
+    /// </summary>
     public enum CBDisplayType
     {
-
+        /// <summary>
+        /// Display the checkboxes in a grid format.
+        /// </summary>
         GRID,
-
+        /// <summary>
+        /// Display the checkboxes in a list format.
+        /// </summary>
         LIST
     }
 
@@ -99,6 +106,7 @@ namespace WindowPane
         /// </summary>
         /// <param name="message">The message displayed directly above the list of checkboxes.</param>
         /// <param name="DataSource">The data source representing the list of strings to display checkboxes for.</param>
+        /// <param name="type">The way to display the checkboxes in the window.</param>
         /// <param name="caption">The title of the Message Box form.</param>
         /// <param name="buttonText">The text displayed over the return button.</param>
         /// <returns></returns>
