@@ -2,7 +2,7 @@
 Performs similarly to a .NET MessageBox. Options to request/receive input from the user through controls such as a text box or drop down.
 Access the single necessary class via MessageBox_.
 
-## Example: REQUESTING A USER'S NAME
+### Example: REQUESTING A USER'S NAME
 
 ```cs
 private void button1_Click(object sender, EventArgs e)
@@ -12,7 +12,7 @@ private void button1_Click(object sender, EventArgs e)
 }
 ```
 
-## Example: REQUESTING A USER TO PICK THEIR NAME FROM A LIST OF NAMES
+### Example: REQUESTING A USER TO PICK THEIR NAME FROM A LIST OF NAMES
 
 ```cs
 private void PickAName(List<string> names)
@@ -22,7 +22,7 @@ private void PickAName(List<string> names)
 }
 ```
 
-## Example: REQUESTING A USER TO PICK THEIR NAME FROM A LIST OF NAMES AND GETTING THE INDEX
+### Example: REQUESTING A USER TO PICK THEIR NAME FROM A LIST OF NAMES AND GETTING THE INDEX
 
 ```cs
 private void PickAName(List<string> names)
